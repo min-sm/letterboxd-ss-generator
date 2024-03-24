@@ -8,15 +8,14 @@ import puppeteer from "puppeteer";
   });
 
   const page = await browser.newPage();
-  await page.setJavaScriptEnabled(false);
-  await page.goto("https://letterboxd.com/mollysauce/film/barbie/", {
+  await page.goto("https://google.com", {
     waitUntil: "networkidle0",
   });
 
   // Get the text content of the <p> element
   const pElementText = await page.evaluate(() => {
-    const pElement = document.querySelector("div.review > div > div > p");
-    return pElement ? pElement.textContent.trim() : null;
+    return document.querySelector("div#SIvCob").textContent;
+    // return pElement ? pElement.textContent.trim() : null;
   });
 
   console.log("Text content of <p> element:", pElementText);
