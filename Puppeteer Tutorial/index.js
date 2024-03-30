@@ -8,18 +8,32 @@ import puppeteer from "puppeteer";
   });
 
   const page = await browser.newPage();
-  await page.setJavaScriptEnabled(false);
-  await page.goto("https://letterboxd.com/mollysauce/film/barbie/", {
-    waitUntil: "networkidle0",
+  // await page.setJavaScriptEnabled(false);
+  await page.goto("https://letterboxd.com/aksually/film/barbie/", {
+    waitUntil: "load",
   });
+  // await page.waitForSelector(
+  //   `img[src^="https://a.ltrbxd.com/resized/film-poster"]`
+  // );
 
   // Get the text content of the <p> element
   const pElementText = await page.evaluate(() => {
-    const pElement = document.querySelector("div.review > div > div > p");
-    return pElement ? pElement.textContent.trim() : null;
+    // review
+    // const pElement = document.querySelector("div.review > div > div > p");
+
+    // reviewer's name
+    // const pElement = document.querySelector("span[itemprop='name']");
+
+    // movie's poster
+    const imgElement = document.querySelector(
+      `img[src^="https://a.ltrbxd.com/resized/film-poster"]`
+    );
+
+    return imgElement ? imgElement.src.trim() : null;
   });
 
   console.log("Text content of <p> element:", pElementText);
+  await page.screenshot({ path: "screenshot.png" });
 
   await browser.close();
 })();
