@@ -10,7 +10,7 @@ import fs from "fs"; // Import the fs (file system) module
 
   const page = await browser.newPage();
   // await page.setJavaScriptEnabled(false);
-  await page.goto("https://letterboxd.com/aksually/film/barbie/", {
+  await page.goto("https://letterboxd.com/iovewitch/film/immaculate-2024/", {
     waitUntil: "load",
   });
   // await page.waitForSelector(
@@ -27,7 +27,7 @@ import fs from "fs"; // Import the fs (file system) module
 
     // movie's poster
     const imgElement = document.querySelector(
-      `img[src^="https://a.ltrbxd.com/resized/film-poster"]`
+      `section.viewing-poster-container>div>div>img[src^="https://a.ltrbxd.com/resized/film-poster"]`
     );
 
     return imgElement ? imgElement.src.trim() : null;
