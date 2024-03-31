@@ -1,6 +1,7 @@
 {
   "name": "puppeteer-tutorial",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,5 +13,9 @@
   "dependencies": {
     "puppeteer": "^22.6.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
 }
