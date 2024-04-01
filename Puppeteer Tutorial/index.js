@@ -13,17 +13,6 @@ import fs from "fs"; // Import the fs (file system) module
   await page.goto("https://letterboxd.com/iovewitch/film/immaculate-2024/", {
     waitUntil: "load",
   });
-  // await page.waitForSelector(
-  //   `img[src^="https://a.ltrbxd.com/resized/film-poster"]`
-  // );
-
-  let movieName = await page.evaluate(() => {
-    const movieNameElement = document.querySelector(
-      `span.film-title-wrapper>a`
-    );
-    return movieNameElement ? movieNameElement.textContent.trim() : null;
-  });
-  console.log(movieName);
 
   // Get the text content of the <p> element
   const pElementText = await page.evaluate(() => {
@@ -40,12 +29,12 @@ import fs from "fs"; // Import the fs (file system) module
   });
   console.log("Text content of <p> element:", pElementText);
 
-  // const newDimensions = "-0-1000-0-1500-";
-  // const replacedUrl = pElementText.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
-  // const response = await page.goto(replacedUrl);
-  // const buffer = await response.buffer();
-  // await fs.promises.writeFile("downloadedImage.jpg", buffer);
-  // await page.screenshot({ path: "screenshot.png" });
+  const newDimensions = "-0-1000-0-1500-";
+  const replacedUrl = pElementText.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
+  const response = await page.goto(replacedUrl);
+  const buffer = await response.buffer();
+  await fs.promises.writeFile("downloadedImage.jpg", buffer);
+  await page.screenshot({ path: "screenshot.png" });
 
-  // await browser.close();
+  await browser.close();
 })();
