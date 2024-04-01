@@ -10,14 +10,19 @@ import { log } from "console";
   });
 
   const page = await browser.newPage();
-  await page.goto("https://letterboxd.com/aksually/film/barbie/", {
-    waitUntil: "load",
-  });
+  await page.goto(
+    "https://letterboxd.com/nathanpcasper/film/punch-drunk-love/",
+    {
+      waitUntil: "load",
+    }
+  );
 
   // Get the text content of the <p> element
   // review
   const review = await page.evaluate(() => {
-    const reviewElement = document.querySelector("div.review > div > div > p");
+    const reviewElement = document.querySelector(
+      "div.review div > h3 ~ div > p"
+    );
     return reviewElement ? reviewElement.textContent.trim() : null;
   });
 
