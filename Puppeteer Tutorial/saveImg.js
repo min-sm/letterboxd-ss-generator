@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import fs from "fs"; // Import the fs (file system) module
+// import fs from "fs"; // Import the fs (file system) module
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -9,20 +9,32 @@ import fs from "fs"; // Import the fs (file system) module
   });
 
   const page = await browser.newPage();
-  await page.goto(
-    "https://a.ltrbxd.com/resized/film-poster/2/7/7/0/6/4/277064-barbie-0-230-0-345-crop.jpg",
-    {
-      waitUntil: "networkidle0",
-    }
-  );
+  // await page.setJavaScriptEnabled(false);
+  await page.goto("https://letterboxd.com/iovewitch/film/immaculate-2024/", {
+    waitUntil: "load",
+  });
 
-  // Get the image URL from the current page
-  const imageUrl = await page.evaluate(() => document.querySelector("img").src);
+  // Get the text content of the <p> element
+  const pElementText = await page.evaluate(() => {
+    // movie's poster
+    let imgElement = document.querySelector(
+      `img[src^="https://a.ltrbxd.com/resized/alternative-poster/"]`
+    );
+    imgElement =
+      imgElement ??
+      document.querySelector(
+        `img[src^="https://a.ltrbxd.com/resized/film-poster/"]`
+      );
+    return imgElement ? imgElement.src.trim() : null;
+  });
+  console.log("Text content of <p> element:", pElementText);
 
-  // Download the image using fs module
-  const response = await page.goto(imageUrl);
+  const newDimensions = "-0-1000-0-1500-";
+  const replacedUrl = pElementText.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
+  const response = await page.goto(replacedUrl);
   const buffer = await response.buffer();
   await fs.promises.writeFile("downloadedImage.jpg", buffer);
+  // await page.screenshot({ path: "screenshot.png" });
 
   await browser.close();
 })();
