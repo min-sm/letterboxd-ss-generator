@@ -4,13 +4,6 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false,
-    "net": false,
-    "tls": false
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack  --config webpack.config.js"
