@@ -17,15 +17,19 @@ module.exports = {
   },
   resolve: {
     fallback: {
+      assert: require.resolve("assert/"),
+      zlib: require.resolve("browserify-zlib"),
+      constants: require.resolve("constants-browserify"),
+      crypto: require.resolve("crypto-browserify"),
+      https: require.resolve("https-browserify"),
+      os: require.resolve("os-browserify/browser"),
       path: require.resolve("path-browserify"),
+      process: require.resolve("process/browser"),
       http: require.resolve("stream-http"),
       url: require.resolve("url"),
-      crypto: require.resolve("crypto-browserify"),
-      os: require.resolve("os-browserify/browser"),
-      https: require.resolve("https-browserify"),
       stream: require.resolve("stream-browserify"),
-      zlib: require.resolve("browserify-zlib"),
       util: require.resolve("util/"),
+      vm: require.resolve("vm-browserify"),
 
       // Add more polyfills as needed for other modules
     },

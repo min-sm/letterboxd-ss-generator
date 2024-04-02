@@ -33,7 +33,7 @@ import puppeteer from "puppeteer";
   const replacedUrl = pElementText.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
   const response = await page.goto(replacedUrl);
   const buffer = await response.buffer();
-  await fs.promises.writeFile("downloadedImage.jpg", buffer);
+  // await fs.promises.writeFile("downloadedImage.jpg", buffer);
   // await page.screenshot({ path: "screenshot.png" });
 
   await browser.close();

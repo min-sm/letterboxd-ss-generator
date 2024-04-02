@@ -1,6 +1,5 @@
 "use strict";
 import puppeteer from "puppeteer";
-// import fs from "fs"; // Import the fs (file system) module
 import { getTextContent, hasSpoilers } from "../utilities/extractText.js";
 
 export async function run() {
@@ -22,7 +21,6 @@ export async function run() {
   const hasSpoiler = await hasSpoilers(page);
 
   const review = await getTextContent(page, `div.review div > h3 ~ div > p`);
-  // const review = "";
 
   const reviewerName = await getTextContent(page, `span[itemprop='name']`);
 
