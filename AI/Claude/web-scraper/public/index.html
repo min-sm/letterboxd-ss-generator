@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web Scraper</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Web Scraper</h1>
+    <form id="scrape-form">
+        <input type="text" id="url-input" placeholder="Enter URL" />
+        <button type="submit">Scrape</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const form = document.getElementById('scrape-form');
+        const urlInput = document.getElementById('url-input');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const url = urlInput.value;
+
+            if (!url) {
+                resultDiv.innerHTML = 'Please enter a valid URL.';
+                return;
+            }
+
+            try {
+                const response = await fetch('/scrape', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `url=${encodeURIComponent(url)}`,
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = `
+              <h2>${data.title}</h2>
+              <p>${data.headingText}</p>
+              <!-- Display other scraped data here -->
+            `;
+                } else {
+                    resultDiv.innerHTML = 'An error occurred while scraping the data.';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = 'An error occurred while scraping the data.';
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+
+</html>
