@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const puppeteer = require("puppeteer");
+const fs = require("fs");
 
 app.use(express.static("public"));
 app.use(express.static("src"));
@@ -20,7 +21,7 @@ app.post("/result", async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      // headless: false,
+      headless: false,
       defaultViewport: false,
       userDataDir: "./tmp",
     });
@@ -65,6 +66,38 @@ app.post("/result", async (req, res) => {
     watchedDate = watchedDate.replace(/\s+/g, " ");
 
     const likes = await getTextContent(page, `p.like-link-target`);
+
+    const posterSrc = await page.evaluate((movieName) => {
+      // movie's poster
+      // let imgElement = document.querySelector(
+      //   `img[src^="https://a.ltrbxd.com/resized/alternative-poster/"]`
+      // );
+      // imgElement =
+      //   imgElement ??
+      //   document.querySelector(
+      //     `img[src^="https://a.ltrbxd.com/resized/film-poster/"]`
+      //   );
+      let imgElement = document.querySelector(`img[alt="${movieName}"]`);
+      return imgElement ? imgElement.src.trim() : null;
+    }, movieName);
+
+    const reviewerPicSrc = await page.evaluate((reviewerName) => {
+      let imgElement = document.querySelector(`img[alt="${reviewerName}"]`);
+      return imgElement ? imgElement.src.trim() : null;
+    }, reviewerName);
+
+    let newDimensions = "-0-1000-0-1500-";
+    let replacedUrl = posterSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
+    let response = await page.goto(replacedUrl);
+    let buffer = await response.buffer();
+    await fs.promises.writeFile("./public/assets/poster.jpg", buffer);
+
+    newDimensions = "-0-1000-0-1000-";
+    console.log(reviewerPicSrc);
+    replacedUrl = reviewerPicSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
+    const responseRP = await page.goto(replacedUrl);
+    buffer = await responseRP.buffer();
+    await fs.promises.writeFile("./public/assets/reviewerPic.jpg", buffer);
 
     await browser.close();
 
