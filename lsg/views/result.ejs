@@ -1,16 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/result.css">
     <title>Review Data</title>
 </head>
 
-<body>
+<body onload="autoClick()">
     <h1>Review Data</h1>
     <div id="htmlContent">
+        <div class="row first-row">
+            <div>
+                <img src="/assets/reviewerPic.jpg" alt="reviewerPic" id="reviewerPic">
+                <p>
+                    <%= locals.data.reviewerName %>
+                </p>
 
+            </div>
+            <img src="/assets/poster.jpg" alt="poster">
+        </div>
+        <div></div>
+        <div></div>
+        <p>
+            <%= locals.data.movieName %>
+        </p>
     </div>
+    <a id="download">Download</a>
     <pre><%= JSON.stringify(data, null, 2) %></pre>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+    </script>
+    <script src="result.js"></script>
 </body>
 
 </html>

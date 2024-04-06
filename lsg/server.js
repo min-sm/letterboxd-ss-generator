@@ -49,7 +49,9 @@ app.post("/result", async (req, res) => {
 
     const hasSpoiler = await hasSpoilers(page);
 
-    const review = await getTextContent(page, `div.review div > h3 ~ div > p`);
+    let review =
+      (await getTextContent(page, `div.review div > h3 ~ div > p`)) ??
+      (await getTextContent(page, `div.review > div > div > p`));
 
     const reviewerName = await getTextContent(page, `span[itemprop='name']`);
 
@@ -68,15 +70,6 @@ app.post("/result", async (req, res) => {
     const likes = await getTextContent(page, `p.like-link-target`);
 
     const posterSrc = await page.evaluate((movieName) => {
-      // movie's poster
-      // let imgElement = document.querySelector(
-      //   `img[src^="https://a.ltrbxd.com/resized/alternative-poster/"]`
-      // );
-      // imgElement =
-      //   imgElement ??
-      //   document.querySelector(
-      //     `img[src^="https://a.ltrbxd.com/resized/film-poster/"]`
-      //   );
       let imgElement = document.querySelector(`img[alt="${movieName}"]`);
       return imgElement ? imgElement.src.trim() : null;
     }, movieName);
@@ -97,7 +90,7 @@ app.post("/result", async (req, res) => {
     replacedUrl = reviewerPicSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
     const responseRP = await page.goto(replacedUrl);
     buffer = await responseRP.buffer();
-    await fs.promises.writeFile("./public/assets/reviewerPic.jpg", buffer);
+    await fs.promises.writeFile("public/assets/reviewerPic.jpg", buffer);
 
     await browser.close();
 
@@ -113,17 +106,6 @@ app.post("/result", async (req, res) => {
         hasSpoiler,
       },
     });
-
-    // res.json({
-    //   movieName,
-    //   reviewerName,
-    //   review,
-    //   movieYear,
-    //   rating,
-    //   watchedDate,
-    //   likes,
-    //   hasSpoiler,
-    // });
   } catch (err) {
     console.error(err);
     res
