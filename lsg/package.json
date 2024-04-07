@@ -13,6 +13,7 @@
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.19.2",
+    "html-to-image": "^1.11.11",
     "puppeteer": "^22.6.2"
   },
   "devDependencies": {
