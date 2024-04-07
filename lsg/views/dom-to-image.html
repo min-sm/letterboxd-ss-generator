@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom-to-image Example</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/dom-to-image/dist/dom-to-image.min.js"></script> -->
     <link rel="stylesheet" href="./../public/assets/result.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Review Data</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body onload="autoClick()">
-    <h1>Review Data</h1>
-    <div id="htmlContent">
+<body>
+    <!-- <div id="capture-me">
+        <h1>Hello, World!</h1>
+        <p>This is an example of using dom-to-image.</p>
+    </div> -->
+    <div id="capture-me">
         <div class="row first-row">
             <div class="first-left">
                 <div class="reviewer">
@@ -30,7 +33,7 @@
 
                     <div class="movieDetails">
                         <span class="rating">★★★★★</span>
-                        <span class="watchedDate">Watched Mar 14, 2024</span>
+                        <span>Watched Mar 14, 2024</span>
                     </div>
                 </div>
             </div>
@@ -41,18 +44,22 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat corrupti reprehenderit fugit culpa, odit
             labore eveniet possimus repudiandae non sapiente.
         </div>
-        <div class="row third-row">
-            <i class="fa-regular fa-heart"></i> <span class="like">
-                LIKE?
-            </span> <span class="likes-count">1,386 likes</span>
-        </div>
+        <div></div>
     </div>
-    <a id="download">Download</a>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+
+    <script>
+        const node = document.getElementById('capture-me');
+
+        domtoimage.toPng(node)
+            .then(function (dataUrl) {
+                const img = new Image();
+                img.src = dataUrl;
+                document.body.appendChild(img);
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
-    <script src="result.js"></script>
 </body>
 
 </html>

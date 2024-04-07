@@ -4,55 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../public/assets/result.css">
+    <link rel="stylesheet" href="/assets/result.css">
+    <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Review Data</title>
 </head>
 
-<body onload="autoClick()">
+<body>
     <h1>Review Data</h1>
+
     <div id="htmlContent">
         <div class="row first-row">
             <div class="first-left">
                 <div class="reviewer">
-                    <img src="./../public/assets/reviewerPic.jpg" alt="reviewerPic" id="reviewerPic">
+                    <img src="/assets/reviewerPic.jpg" alt="reviewerPic" id="reviewerPic">
                     <p class="reviewerName">
-                        karst
+                        <%= locals.data.reviewerName %>
                     </p>
                 </div>
                 <div class="movie">
                     <div>
-                        <span class="movieName">The Assassination of Jesse James Lorem ipsum</span>
-                        <span class="movieYear">2024</span>
+                        <span class="movieName">
+                            <%= locals.data.movieName %>
+                        </span>
+                        <span class="movieYear">
+                            <%= locals.data.movieYear %>
+                        </span>
                     </div>
 
                     <div class="movieDetails">
-                        <span class="rating">★★★★★</span>
-                        <span class="watchedDate">Watched Mar 14, 2024</span>
+                        <span class="rating">
+                            <%= locals.data.rating %>
+                        </span>
+                        <span class="watchedDate">
+                            <%= locals.data.watchedDate %>
+                        </span>
                     </div>
                 </div>
             </div>
 
-            <img src="./../public/assets/poster.jpg" alt="poster" id="moviePoster">
+            <img src="/assets/poster.jpg" alt="poster" id="moviePoster">
         </div>
         <div class="row sec-row">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat corrupti reprehenderit fugit culpa, odit
-            labore eveniet possimus repudiandae non sapiente.
+            <%= locals.data.review %>
         </div>
         <div class="row third-row">
             <i class="fa-regular fa-heart"></i> <span class="like">
                 LIKE?
-            </span> <span class="likes-count">1,386 likes</span>
+            </span> <span class="likes-count">
+                <%= locals.data.likes %>
+            </span>
         </div>
     </div>
-    <a id="download">Download</a>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
-    <script src="result.js"></script>
+    <button id="downloadBtn">Download Image</button>
+    <pre><%= JSON.stringify(data, null, 2) %></pre>
+    <script src="result1.js"></script>
 </body>
 
 </html>

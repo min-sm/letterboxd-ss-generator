@@ -1,10 +1,10 @@
 #htmlContent {
-    /* background-color: #181B20; */
-    background-color: #202930;
+    background-color: #181B20;
+    /* background-color: #202930; */
     color: white;
     font-family: 'Graphik';
     padding: 1.75rem;
-    width: 75rem;
+    width: 60rem;
 }
 
 .first-row {
@@ -39,26 +39,27 @@
     font-weight: 500;
     letter-spacing: 0.5px;
     opacity: 0.5;
-    font-size: large;
+    font-size: larger;
 }
 
 .movie {
     flex: 1;
+    margin-top: 1rem;
 }
 
 .movieName {
-    font-size: larger;
+    font-size: 2.05rem;
     font-weight: bolder;
-    word-spacing: 0.25rem;
-    letter-spacing: 1.5px;
+    /* word-spacing: 0.25rem; */
+    letter-spacing: 0.75px;
     line-height: 1.25;
 }
 
 .movieYear {
-    margin-left: 0.5rem;
+    /* margin-left: 0.5rem; */
     font-weight: 300;
     letter-spacing: 2px;
-    font-size: 1rem;
+    font-size: 1.6rem;
     opacity: 0.65;
 }
 
@@ -69,9 +70,16 @@
 
 .rating {
     color: #00E156;
-    font-size: 1rem;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
+.watchedDate {
+    font-size: 1.5rem;
+    opacity: .75;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+}
 
 #moviePoster {
     width: 150px;
@@ -79,4 +87,23 @@
     border-radius: 10px;
     object-fit: contain;
     border: 3px solid grey;
+}
+
+.sec-row,
+.third-row {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    opacity: 0.8;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+}
+
+.like {
+    letter-spacing: 3px;
+}
+
+.likes-count {
+    margin-left: 1.2rem;
+    opacity: 0.65;
 }

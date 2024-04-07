@@ -114,4 +114,32 @@ app.post("/result", async (req, res) => {
   }
 });
 
+app.post("/download", async (req, res) => {
+  try {
+    const browser = await puppeteer.launch({
+      headless: false,
+      defaultViewport: false,
+      userDataDir: "./tmp",
+    });
+
+    const page = await browser.newPage();
+    // const currentURL = window.location.href;
+
+    // Navigate to the desired URL
+    await page.goto(`http://localhost:3000/result`, {
+      waitUntil: "load",
+    });
+
+    const element = await page.$("#htmlContent");
+    await element.screenshot({ path: "element-screenshot.png" });
+
+    await browser.close();
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching the review" });
+  }
+});
+
 app.listen(3000);
