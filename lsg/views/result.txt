@@ -59,8 +59,6 @@
         </div>
     </div>
     <button id="downloadBtn">Download Image</button>
-    <pre><%= JSON.stringify(data, null, 2) %></pre>
-    <script src="result1.js"></script>
 </body>
 
 </html>

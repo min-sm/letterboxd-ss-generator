@@ -1,23 +1,21 @@
-const puppeteer = require("puppeteer");
-const downloadBtn = document.getElementById("downloadBtn");
+document
+  .getElementById("downloadForm")
+  .addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent default form submission
 
-downloadBtn.addEventListener("click", async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    defaultViewport: false,
+    try {
+      // Send an AJAX request to trigger the screenshot capture
+      const response = await fetch("/download", {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        console.log("Screenshot captured successfully.");
+        // Optionally, you can handle the response here
+      } else {
+        console.error("Failed to capture screenshot.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   });
-  const page = await browser.newPage();
-
-  const currentURL = window.location.href;
-
-  // Navigate to the desired URL
-  await page.goto(`${currentURL}`, {
-    waitUntil: "load",
-  });
-
-  // Capture the screenshot of a specific element
-  const element = await page.$("#htmlContent");
-  await element.screenshot({ path: "element-screenshot.png" });
-
-  await browser.close();
-});
