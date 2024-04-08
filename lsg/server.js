@@ -83,6 +83,7 @@ app.post("/result", async (req, res) => {
 
     let newDimensions = "-0-1000-0-1500-";
     let replacedUrl = posterSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
+    let posterBetterSrc = replacedUrl;
     let response = await page.goto(replacedUrl);
     let buffer = await response.buffer();
     await fs.promises.writeFile("./public/assets/poster.jpg", buffer);
@@ -90,11 +91,47 @@ app.post("/result", async (req, res) => {
     newDimensions = "-0-1000-0-1000-";
     console.log(reviewerPicSrc);
     replacedUrl = reviewerPicSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
+    let reviewerPicBetterSrc = replacedUrl;
     const responseRP = await page.goto(replacedUrl);
     buffer = await responseRP.buffer();
     await fs.promises.writeFile("public/assets/reviewerPic.jpg", buffer);
 
-    await browser.close();
+    const renderedHTML = await new Promise((resolve, reject) => {
+      res.render(
+        "result1",
+        {
+          data: {
+            movieName,
+            reviewerName,
+            review,
+            movieYear,
+            rating,
+            watchedDate,
+            likes,
+            hasSpoiler,
+            posterBetterSrc,
+            reviewerPicBetterSrc,
+          },
+        },
+        (err, html) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(html);
+          }
+        }
+      );
+    });
+
+    // Create a new page and set its content to the rendered HTML
+    const screenshotPage = await browser.newPage();
+    await screenshotPage.setContent(renderedHTML);
+
+    // Capture the screenshot of the desired element
+    const element = await screenshotPage.$("#htmlContent");
+    await element.screenshot({ path: "theCard.png" });
+
+    // await browser.close();
 
     res.render("result", {
       data: {
@@ -108,6 +145,7 @@ app.post("/result", async (req, res) => {
         hasSpoiler,
       },
     });
+    await browser.close();
   } catch (err) {
     console.error(err);
     res
@@ -115,7 +153,5 @@ app.post("/result", async (req, res) => {
       .json({ error: "An error occurred while fetching the review" });
   }
 });
-
-app.post("/download", (req, res) => {});
 
 app.listen(3000);
