@@ -94,9 +94,17 @@
 
         .watchedDate {
             font-size: 1.5rem;
-            opacity: .75;
+            opacity: .45;
             font-weight: 300;
             letter-spacing: 1.2px;
+        }
+
+        .hasSpoiler {
+            font-size: 1.5rem;
+            opacity: 0.65;
+            font-style: italic;
+            margin-top: 1.25rem;
+            font-weight: 300;
         }
 
         #moviePoster {
@@ -117,6 +125,10 @@
             letter-spacing: 1.2px;
         }
 
+        .sec-row {
+            opacity: 1;
+        }
+
         .like {
             letter-spacing: 3px;
         }
@@ -129,10 +141,7 @@
 </head>
 
 <body>
-    <h1>Review Data</h1>
-
     <div id="htmlContent-wrapper">
-
         <div id="htmlContent">
             <div class="row first-row">
                 <div class="first-left">
@@ -159,6 +168,8 @@
                             <span class="watchedDate">
                                 <%= locals.data.watchedDate %>
                             </span>
+                            <%- locals.data.hasSpoiler ? `<span class="hasSpoiler">This review may contain
+                                spoilers.</span>` : '' %>
                         </div>
                     </div>
                 </div>
@@ -177,10 +188,6 @@
             </div>
         </div>
     </div>
-
-    <form action="/download" method="post">
-        <button type="submit">Download</button>
-    </form>
 </body>
 
 </html>

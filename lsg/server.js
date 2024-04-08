@@ -90,17 +90,10 @@ app.post("/result", async (req, res) => {
     let newDimensions = "-0-1000-0-1500-";
     let replacedUrl = posterSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
     let posterBetterSrc = replacedUrl;
-    let response = await page.goto(replacedUrl);
-    let buffer = await response.buffer();
-    await fs.promises.writeFile("./public/assets/poster.jpg", buffer);
 
     newDimensions = "-0-1000-0-1000-";
-    console.log(reviewerPicSrc);
     replacedUrl = reviewerPicSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
     let reviewerPicBetterSrc = replacedUrl;
-    const responseRP = await page.goto(replacedUrl);
-    buffer = await responseRP.buffer();
-    await fs.promises.writeFile("public/assets/reviewerPic.jpg", buffer);
 
     const renderedHTML = await new Promise((resolve, reject) => {
       res.render(
@@ -135,7 +128,7 @@ app.post("/result", async (req, res) => {
 
     // Capture the screenshot of the desired element
     const element = await screenshotPage.$("#htmlContent");
-    await element.screenshot({ path: "theCard1.png" });
+    await element.screenshot({ path: "./public/assets/card.png" });
 
     // await browser.close();
 
@@ -149,6 +142,8 @@ app.post("/result", async (req, res) => {
         watchedDate,
         likes,
         hasSpoiler,
+        posterBetterSrc,
+        reviewerPicBetterSrc,
       },
     });
     await browser.close();
@@ -158,6 +153,15 @@ app.post("/result", async (req, res) => {
       .status(500)
       .json({ error: "An error occurred while fetching the review" });
   }
+});
+
+app.get("/download", (req, res) => {
+  const imagePath = path.join(__dirname, "public", "assets", "card.png");
+  res.setHeader("Content-Disposition", "attachment; filename=card.png");
+  res.setHeader("Content-Type", "image/jpeg");
+
+  // Send the file
+  res.sendFile(imagePath);
 });
 
 app.listen(3000);

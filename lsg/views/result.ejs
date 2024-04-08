@@ -19,7 +19,7 @@
         <div class="row first-row">
             <div class="first-left">
                 <div class="reviewer">
-                    <img src="/assets/reviewerPic.jpg" alt="reviewerPic" id="reviewerPic">
+                    <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
                     <p class="reviewerName">
                         <%= locals.data.reviewerName %>
                     </p>
@@ -41,11 +41,13 @@
                         <span class="watchedDate">
                             <%= locals.data.watchedDate %>
                         </span>
+                        <%- locals.data.hasSpoiler ? `<span class="hasSpoiler">This review may contain
+                            spoilers.</span>` : '' %>
                     </div>
                 </div>
             </div>
 
-            <img src="/assets/poster.jpg" alt="poster" id="moviePoster">
+            <img src="<%= locals.data.posterBetterSrc %>" alt="poster" id="moviePoster">
         </div>
         <div class="row sec-row">
             <%- locals.data.review %>
@@ -60,7 +62,7 @@
     </div>
 
 
-    <form action="/download" method="post">
+    <form action="/download" method="get">
         <button type="submit">Download</button>
     </form>
 
