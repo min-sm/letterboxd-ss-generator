@@ -48,7 +48,7 @@
             <img src="/assets/poster.jpg" alt="poster" id="moviePoster">
         </div>
         <div class="row sec-row">
-            <%= locals.data.review %>
+            <%- locals.data.review %>
         </div>
         <div class="row third-row">
             <i class="fa-regular fa-heart"></i> <span class="like">
@@ -59,9 +59,12 @@
         </div>
     </div>
 
+
     <form action="/download" method="post">
         <button type="submit">Download</button>
     </form>
+
+    <pre><%= JSON.stringify(data, null, 2) %></pre>
 </body>
 
 </html>

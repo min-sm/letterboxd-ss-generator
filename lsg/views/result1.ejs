@@ -10,6 +10,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Review Data</title>
     <style>
+        #htmlContent-wrapper {
+            background-color: #181B20;
+            /* background-color: green; */
+            padding: 50px;
+        }
+
         #htmlContent {
             background-color: #181B20;
             /* background-color: #202930; */
@@ -125,47 +131,50 @@
 <body>
     <h1>Review Data</h1>
 
-    <div id="htmlContent">
-        <div class="row first-row">
-            <div class="first-left">
-                <div class="reviewer">
-                    <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
-                    <p class="reviewerName">
-                        <%= locals.data.reviewerName %>
-                    </p>
-                </div>
-                <div class="movie">
-                    <div>
-                        <span class="movieName">
-                            <%= locals.data.movieName %>
-                        </span>
-                        <span class="movieYear">
-                            <%= locals.data.movieYear %>
-                        </span>
-                    </div>
+    <div id="htmlContent-wrapper">
 
-                    <div class="movieDetails">
-                        <span class="rating">
-                            <%= locals.data.rating %>
-                        </span>
-                        <span class="watchedDate">
-                            <%= locals.data.watchedDate %>
-                        </span>
+        <div id="htmlContent">
+            <div class="row first-row">
+                <div class="first-left">
+                    <div class="reviewer">
+                        <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
+                        <p class="reviewerName">
+                            <%= locals.data.reviewerName %>
+                        </p>
+                    </div>
+                    <div class="movie">
+                        <div>
+                            <span class="movieName">
+                                <%= locals.data.movieName %>
+                            </span>
+                            <span class="movieYear">
+                                <%= locals.data.movieYear %>
+                            </span>
+                        </div>
+
+                        <div class="movieDetails">
+                            <span class="rating">
+                                <%= locals.data.rating %>
+                            </span>
+                            <span class="watchedDate">
+                                <%= locals.data.watchedDate %>
+                            </span>
+                        </div>
                     </div>
                 </div>
+
+                <img src="<%= locals.data.posterBetterSrc %>" alt="poster" id="moviePoster">
             </div>
-
-            <img src="<%= locals.data.posterBetterSrc %>" alt="poster" id="moviePoster">
-        </div>
-        <div class="row sec-row">
-            <%= locals.data.review %>
-        </div>
-        <div class="row third-row">
-            <i class="fa-regular fa-heart"></i> <span class="like">
-                LIKE?
-            </span> <span class="likes-count">
-                <%= locals.data.likes %>
-            </span>
+            <div class="row sec-row">
+                <%- locals.data.review %>
+            </div>
+            <div class="row third-row">
+                <i class="fa-regular fa-heart"></i> <span class="like">
+                    LIKE?
+                </span> <span class="likes-count">
+                    <%= locals.data.likes %>
+                </span>
+            </div>
         </div>
     </div>
 

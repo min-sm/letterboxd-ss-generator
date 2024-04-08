@@ -23,7 +23,7 @@ app.post("/result", async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      headless: false,
+      // headless: false,
       defaultViewport: false,
       userDataDir: "./tmp",
     });
@@ -36,6 +36,9 @@ app.post("/result", async (req, res) => {
     async function getTextContent(page, selector) {
       const text = await page.evaluate((sel) => {
         const element = document.querySelector(sel);
+        if (sel.includes(`div.review`)) {
+          return element ? element.innerHTML.trim() : null;
+        }
         return element ? element.textContent.trim() : null;
       }, selector);
       return text;
@@ -52,8 +55,11 @@ app.post("/result", async (req, res) => {
     const hasSpoiler = await hasSpoilers(page);
 
     let review =
-      (await getTextContent(page, `div.review div > h3 ~ div > p`)) ??
-      (await getTextContent(page, `div.review > div > div > p`));
+      (await getTextContent(page, `div.review div > h3 ~ div`)) ??
+      (await getTextContent(
+        page,
+        `div.review > div.show-review.hidden-spoilers > div`
+      ));
 
     const reviewerName = await getTextContent(page, `span[itemprop='name']`);
 
@@ -129,7 +135,7 @@ app.post("/result", async (req, res) => {
 
     // Capture the screenshot of the desired element
     const element = await screenshotPage.$("#htmlContent");
-    await element.screenshot({ path: "theCard.png" });
+    await element.screenshot({ path: "theCard1.png" });
 
     // await browser.close();
 
