@@ -11,7 +11,9 @@
 </head>
 
 <body>
-    <img src="./assets/logo.svg" alt="carrrdd logo">
+    <a href="/">
+        <img src="./assets/logo.svg" alt="carrrdd logo">
+    </a>
     <div class="hero_section">
         <div class="hs_left">
             <h1>
@@ -19,14 +21,16 @@
             </h1>
             <p>Showcase your insightful film reviews from Letterboxd with stunning, shareable screenshots.</p>
             <form action="/result" method="post">
-                <input id="review_link" type="text" name="review_link">
-                <button type="submit">Click</button>
+                <input id="review_link" type="text" name="review_link"
+                    placeholder="https://letterboxd.com/user/film/film-name/">
+                <button type="submit">Screenshot</button>
+
             </form>
         </div>
         <div class="hs_right">
             <div class="img-wrapper">
-                <img src="./assets/card.png" alt="one of the reivew card" class="image img1">
-                <img src="./assets/card1.png" alt="one of the reivew card" class="image img2">
+                <img src="./assets/index-card.png" alt="one of the reivew card" class="image img1">
+                <img src="./assets/index-card1.png" alt="one of the reivew card" class="image img2">
             </div>
         </div>
     </div>

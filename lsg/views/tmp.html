@@ -4,60 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./../public/assets/favicon.png" />
     <link rel="stylesheet" href="./../public/assets/result.css">
+    <link rel="stylesheet" href="./../public/assets/root.css">
+    <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Review Data</title>
 </head>
 
-<body onload="autoClick()">
-    <h1>Review Data</h1>
-    <div id="htmlContent-wrapper">
-
+<body>
+    <a href="/">
+        <img src="./../public/assets/logo.svg" alt="carrrdd logo">
+    </a>
+    <div id="wrapper">
         <div id="htmlContent">
             <div class="row first-row">
                 <div class="first-left">
                     <div class="reviewer">
-                        <img src="./../public/assets/reviewerPic.jpg" alt="reviewerPic" id="reviewerPic">
+                        <img src="https://a.ltrbxd.com/resized/avatar/twitter/4/9/0/4/5/7/shard/http___pbs.twimg.com_profile_images_1001935353740177414_9ZQ0Noe4-0-1000-0-1000-crop.jpg?v=2627a755b4"
+                            alt="reviewerPic" id="reviewerPic">
                         <p class="reviewerName">
-                            karst
+                            Karst
                         </p>
                     </div>
                     <div class="movie">
                         <div>
-                            <span class="movieName">The Assassination of Jesse James Lorem ipsum</span>
-                            <span class="movieYear">2024</span>
+                            <span class="movieName">
+                                The Lord of the Rings: The Fellowship of the Ring
+                            </span>
+                            <span class="movieYear">
+                                2001
+                            </span>
                         </div>
-
                         <div class="movieDetails">
-                            <span class="rating">★★★★★</span>
-                            <span class="watchedDate">Watched Mar 14, 2024</span>
-                            <span class="hasSpoiler">This review may contain spoilers.</span>
+                            <span class="rating">
+                                ★★★★½
+                            </span>
+                            <span class="watchedDate">
+                                Rewatched Apr 03, 2024
+                            </span>
                         </div>
                     </div>
                 </div>
-
-                <img src="./../public/assets/poster.jpg" alt="poster" id="moviePoster">
+                <img src="https://a.ltrbxd.com/resized/sm/upload/3t/vq/0u/m6/1tX9ZlgVvWjAQhMs1vAfsYpi7VK-0-1000-0-1500-crop.jpg?v=30bbb824e1"
+                    alt="poster" id="moviePoster">
             </div>
             <div class="row sec-row">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat corrupti reprehenderit fugit culpa,
-                odit
-                labore eveniet possimus repudiandae non sapiente.
+                playing geoguessr has ruined movies all i saw was new zealand
             </div>
             <div class="row third-row">
                 <i class="fa-regular fa-heart"></i> <span class="like">
                     LIKE?
-                </span> <span class="likes-count">1,386 likes</span>
+                </span> <span class="likes-count">
+                    2,538 likes
+                </span>
             </div>
         </div>
+
+        <form action="/download" method="get">
+            <button type="submit">Download</button>
+        </form>
     </div>
-    <a id="download">Download</a>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
-    <script src="result.js"></script>
+
+
+
+
 </body>
 
 </html>

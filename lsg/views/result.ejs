@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="stylesheet" href="/assets/result.css">
+    <link rel="stylesheet" href="/assets/root.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -14,60 +15,58 @@
 </head>
 
 <body>
-    <h1>Review Data</h1>
-
-    <div id="htmlContent">
-        <div class="row first-row">
-            <div class="first-left">
-                <div class="reviewer">
-                    <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
-                    <p class="reviewerName">
-                        <%= locals.data.reviewerName %>
-                    </p>
-                </div>
-                <div class="movie">
-                    <div>
-                        <span class="movieName">
-                            <%= locals.data.movieName %>
-                        </span>
-                        <span class="movieYear">
-                            <%= locals.data.movieYear %>
-                        </span>
+    <a href="/">
+        <img src="/assets/logo.svg" alt="carrrdd logo">
+    </a>
+    <div id="wrapper">
+        <div id="htmlContent">
+            <div class="row first-row">
+                <div class="first-left">
+                    <div class="reviewer">
+                        <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
+                        <p class="reviewerName">
+                            <%= locals.data.reviewerName %>
+                        </p>
                     </div>
-
-                    <div class="movieDetails">
-                        <span class="rating">
-                            <%= locals.data.rating %>
-                        </span>
-                        <span class="watchedDate">
-                            <%= locals.data.watchedDate %>
-                        </span>
-                        <%- locals.data.hasSpoiler ? `<span class="hasSpoiler">This review may contain
-                            spoilers.</span>` : '' %>
+                    <div class="movie">
+                        <div>
+                            <span class="movieName">
+                                <%= locals.data.movieName %>
+                            </span>
+                            <span class="movieYear">
+                                <%= locals.data.movieYear %>
+                            </span>
+                        </div>
+                        <div class="movieDetails">
+                            <span class="rating">
+                                <%= locals.data.rating %>
+                            </span>
+                            <span class="watchedDate">
+                                <%= locals.data.watchedDate %>
+                            </span>
+                            <%- locals.data.hasSpoiler ? `<span class="hasSpoiler">This review may contain
+                                spoilers.</span>` : '' %>
+                        </div>
                     </div>
                 </div>
+                <img src="<%= locals.data.posterBetterSrc %>" alt="poster" id="moviePoster">
             </div>
-
-            <img src="<%= locals.data.posterBetterSrc %>" alt="poster" id="moviePoster">
+            <div class="row sec-row">
+                <%- locals.data.review %>
+            </div>
+            <div class="row third-row">
+                <i class="fa-regular fa-heart"></i> <span class="like">
+                    LIKE?
+                </span> <span class="likes-count">
+                    <%= locals.data.likes %>
+                </span>
+            </div>
         </div>
-        <div class="row sec-row">
-            <%- locals.data.review %>
-        </div>
-        <div class="row third-row">
-            <i class="fa-regular fa-heart"></i> <span class="like">
-                LIKE?
-            </span> <span class="likes-count">
-                <%= locals.data.likes %>
-            </span>
-        </div>
+        <form action="/download" method="get">
+            <button type="submit">Download</button>
+        </form>
     </div>
 
-
-    <form action="/download" method="get">
-        <button type="submit">Download</button>
-    </form>
-
-    <pre><%= JSON.stringify(data, null, 2) %></pre>
 </body>
 
 </html>
