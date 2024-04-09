@@ -30,24 +30,8 @@ app.post("/result", async (req, res) => {
 
     const page = await browser.newPage();
     await page.goto(`${reveiwLink}`, {
-      waitUntil: "domcontentloaded",
+      waitUntil: "load",
     });
-
-    const selectors = {
-      review: "div.review div > h3 ~ div",
-      reviewerName: "span[itemprop='name']",
-      movieName: "span.film-title-wrapper>a",
-      movieYear: "span.film-title-wrapper>small>a",
-      rating: "span.rating.rating-large",
-      watchedDate: "p.view-date.date-links",
-      likes: "p.like-link-target",
-      posterSrc: `section img`,
-      reviewerPicSrc: `div.person-summary.-inline img`,
-    };
-
-    for (const selector in selectors) {
-      await page.waitForSelector(selectors[selector], { timeout: 5000 });
-    }
 
     async function getTextContent(page, selector) {
       const text = await page.evaluate((sel) => {
@@ -70,14 +54,12 @@ app.post("/result", async (req, res) => {
 
     const hasSpoiler = await hasSpoilers(page);
 
-    // let review =
-    //   (await getTextContent(page, `div.review div > h3 ~ div`)) ??
-    //   (await getTextContent(
-    //     page,
-    //     `div.review > div.show-review.hidden-spoilers > div`
-    //   ));
-
-    let review = await getTextContent(page, `div.review div > h3 ~ div`);
+    let review =
+      (await getTextContent(page, `div.review div > h3 ~ div`)) ??
+      (await getTextContent(
+        page,
+        `div.review div > p.prior-review-link ~ div`
+      ));
 
     const reviewerName = await getTextContent(page, `span[itemprop='name']`);
 
