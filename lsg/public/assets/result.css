@@ -8,9 +8,10 @@ body {
     color: white;
 }
 
-img#logo-img {
+img#carrrdd-logo {
     margin-top: 1rem;
     margin-left: 1rem;
+    width: 13vw;
 }
 
 #wrapper {
@@ -144,6 +145,10 @@ img#logo-img {
     opacity: 0.65;
 }
 
+img#review-card {
+    width: 50%;
+}
+
 form {
     margin-top: 1.5rem;
 }
@@ -163,4 +168,10 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #CC6600;
+}
+
+@media screen and (min-width: 1024px) {
+    img#carrrdd-logo {
+        width: 8vw;
+    }
 }
