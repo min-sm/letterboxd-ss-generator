@@ -3,24 +3,64 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- font awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Review Data</title>
-    <link rel="stylesheet" href="./../public/assets/root.css">
-
     <style>
+        :root {
+            --main-bg: #102840;
+            --green: #00e054;
+            --blue: #40bcf4;
+            --orange: #ff8000;
+            --card-color: #181B20;
+        }
+
+        /* Regular styles */
+        @font-face {
+            font-family: 'Graphik';
+            src: url('GraphikLight.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Graphik';
+            src: url('GraphikMedium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Graphik';
+            src: url('GraphikBlack.otf') format('opentype');
+            font-weight: bolder;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Graphik';
+            src: url('GraphikRegular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Italic styles */
+        @font-face {
+            font-family: 'Graphik';
+            src: url('GraphikRegularItalic.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
         #htmlContent-wrapper {
             background-color: #181B20;
-            /* background-color: green; */
             padding: 50px;
         }
 
         #htmlContent {
             background-color: #181B20;
-            /* background-color: #202930; */
             color: white;
             font-family: 'Graphik';
             padding: 1.75rem;
@@ -147,47 +187,25 @@
         <div id="htmlContent">
             <div class="row first-row">
                 <div class="first-left">
-                    <div class="reviewer">
-                        <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
-                        <p class="reviewerName">
-                            <%= locals.data.reviewerName %>
-                        </p>
+                    <div class="reviewer"> <img
+                            src="https://a.ltrbxd.com/resized/avatar/twitter/4/9/0/4/5/7/shard/http___pbs.twimg.com_profile_images_1001935353740177414_9ZQ0Noe4-0-1000-0-1000-crop.jpg?v=2627a755b4"
+                            alt="reviewerPic" id="reviewerPic">
+                        <p class="reviewerName"> Karst </p>
                     </div>
                     <div class="movie">
-                        <div>
-                            <span class="movieName">
-                                <%= locals.data.movieName %>
-                            </span>
-                            <span class="movieYear">
-                                <%= locals.data.movieYear %>
-                            </span>
-                        </div>
-
-                        <div class="movieDetails">
-                            <span class="rating">
-                                <%= locals.data.rating %>
-                            </span>
-                            <span class="watchedDate">
-                                <%= locals.data.watchedDate %>
-                            </span>
-                            <%- locals.data.hasSpoiler ? `<span class="hasSpoiler">This review may contain
-                                spoilers.</span>` : '' %>
-                        </div>
+                        <div> <span class="movieName"> Monkey Man </span> <span class="movieYear"> 2024 </span> </div>
+                        <div class="movieDetails"> <span class="rating"> ★★★★ </span> <span class="watchedDate"> Watched
+                                Apr 04, 2024 </span> </div>
                     </div>
-                </div>
-
-                <img src="<%= locals.data.posterBetterSrc %>" alt="poster" id="moviePoster">
+                </div> <img
+                    src="https://a.ltrbxd.com/resized/alternative-poster/4/8/8/7/5/1/p/jlEhbbRMSzSSK3McVHxnDpZ9wGP-0-1000-0-1500-crop.jpg?v=eda2050e38"
+                    alt="poster" id="moviePoster">
             </div>
             <div class="row sec-row">
-                <%- locals.data.review %>
+                <p>it pains me to log something like this on a&nbsp;thursday</p>
             </div>
-            <div class="row third-row">
-                <i class="fa-regular fa-heart"></i> <span class="like">
-                    LIKE?
-                </span> <span class="likes-count">
-                    <%= locals.data.likes %>
-                </span>
-            </div>
+            <div class="row third-row"> <i class="fa-regular fa-heart"></i> <span class="like"> LIKE? </span> <span
+                    class="likes-count"> </span> </div>
         </div>
     </div>
 </body>

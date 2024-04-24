@@ -26,7 +26,6 @@
                         <img src="<%= locals.data.reviewerPicBetterSrc %>" alt="reviewerPic" id="reviewerPic">
                         <p class="reviewerName">
                             <%= locals.data.reviewerName %>
-                                <%= __dirname %>
                         </p>
                     </div>
                     <div class="movie">
@@ -65,8 +64,8 @@
         </div>
 
         <!-- <img src="/assets/card.png" alt="review card" id="review-card"> -->
-        <form action="/download" method="get">
-            <input name="renderedHTML" value="<%= locals.data.renderedHTML %>">
+        <form action="/download" method="post">
+            <input type="hidden" name="renderedHTML" value="<%= locals.data.renderedHTML %>">
 
             <button type="submit">Download</button>
         </form>

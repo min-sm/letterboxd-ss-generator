@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    font-family: 'Graphik';
+}
+
+body {
+    background-color: var(--main-bg);
+    color: white;
+}
+
+img#carrrdd-logo {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 8vw;
+}
+
+.hero_section {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5rem;
+
+}
+
+.hs_left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-around; */
+}
+
+h1 {
+    color: white;
+    font-weight: 500;
+    font-size: 2.3vw;
+    width: 80%;
+    margin-bottom: 1.8vw;
+}
+
+p {
+    width: 80%;
+    letter-spacing: 0.03125vw;
+    word-spacing: 0.25vw;
+    line-height: 1.35vw;
+    font-size: 1.15vw;
+    margin-bottom: 1.75vw;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 70%;
+}
+
+input[type="text"]#review_link {
+    width: 90%;
+    padding: 0.8vw 1vw;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.85vw;
+    /* Adding a border */
+}
+
+/* Styling for the input when it's focused */
+input[type="text"]#review_link:focus {
+    border-color: var(--blue);
+    /* Changing border color */
+    box-shadow: 0 0 5px var(--blue);
+    /* Adding a box shadow */
+    outline: none;
+}
+
+button[type="submit"] {
+    margin-top: 1vw;
+    display: block;
+    color: white;
+    background-color: var(--orange);
+    border: none;
+    padding: 0.8vw 1.25vw;
+    font-size: 1vw;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+    background-color: #CC6600;
+}
+
+.hs_right {
+    flex: 1.25;
+    padding-top: 1rem;
+}
+
+.img-wrapper {
+    position: relative;
+}
+
+.image {
+    width: 23vw;
+}
+
+.img2 {
+    position: absolute;
+    top: 50px;
+    right: 25px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    p {
+        font-size: 1.5vw;
+        word-spacing: 0.25vw;
+        line-height: 1.75vw;
+    }
+
+    input[type="text"]#review_link {
+        font-size: 1.125vw;
+    }
+
+    button[type="submit"] {
+        font-size: 1.25vw;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .hero_section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hs_left {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 3.5vw;
+        margin-bottom: 4.5vw;
+    }
+
+    p {
+        font-size: 2.75vw;
+        line-height: 3.25vw;
+        margin-bottom: 2.8vw;
+    }
+
+    input[type="text"]#review_link {
+        font-size: 2.25vw;
+    }
+
+    button[type="submit"] {
+        font-size: 1.95vw;
+    }
+
+    .hs_right {
+        width: 80%;
+    }
+
+    .image {
+        width: 38vw;
+    }
+
+    .img2 {
+        right: 0;
+        top: 100px;
+    }
+}
+
+
+@media screen and (max-width: 426px) {
+
+    h1 {
+        font-size: 5vw;
+        margin-bottom: 6vw;
+    }
+
+    p {
+        font-size: 3vw;
+        line-height: 3.75vw;
+        margin-bottom: 3vw;
+    }
+
+    form {
+        width: 80%;
+    }
+
+    input[type="text"]#review_link {
+        font-size: 2.5vw;
+    }
+
+    button[type="submit"] {
+        margin-top: 2vw;
+        font-size: 2.5vw;
+    }
+
+    .hs_right {
+        width: 80%;
+    }
+
+    .image {
+        width: 48vw;
+    }
+
+    .img2 {
+        top: 150px;
+    }
+}

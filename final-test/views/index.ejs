@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    <link rel="stylesheet" href="./assets/index.css">
+    <link rel="stylesheet" href="./assets/root.css">
+    <title>Homepage</title>
+</head>
+
+<body>
+    <a href="/">
+        <img src="./assets/logo.svg" alt="carrrdd logo" id="carrrdd-logo">
+    </a>
+    <div class="hero_section">
+        <div class="hs_left">
+            <h1>
+                Captivating Letterboxd Reviews. <br>Effortlessly Shared.
+            </h1>
+            <p>Showcase your insightful film reviews from Letterboxd with stunning, shareable screenshots.</p>
+            <form action="/result" method="post">
+                <input id="review_link" type="text" name="review_link"
+                    placeholder="https://letterboxd.com/user/film/film-name/">
+                <button type="submit">Screenshot</button>
+
+            </form>
+        </div>
+        <div class="hs_right">
+            <div class="img-wrapper">
+                <img src="./assets/index-card.png" alt="one of the reivew card" class="image img1">
+                <img src="./assets/index-card1.png" alt="one of the reivew card" class="image img2">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

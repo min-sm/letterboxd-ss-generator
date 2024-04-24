@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    font-family: 'Graphik';
+}
+
+body {
+    background-color: var(--main-bg);
+    color: white;
+}
+
+img#carrrdd-logo {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 13vw;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    flex-direction: column;
+}
+
+#htmlContent {
+    background-color: var(--card-color);
+    color: white;
+    font-family: 'Graphik';
+    padding: 1.75rem;
+    width: 40rem;
+}
+
+.first-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.first-left {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1.2rem;
+}
+
+.reviewer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#reviewerPic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 3px solid grey;
+    margin-right: 0.5rem;
+}
+
+.reviewerName {
+    font-family: 'Graphik';
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.5;
+    font-size: larger;
+}
+
+.movie {
+    flex: 1;
+    margin-top: 1rem;
+}
+
+.movieName {
+    font-size: 2.05rem;
+    font-weight: bolder;
+    /* word-spacing: 0.25rem; */
+    letter-spacing: 0.75px;
+    line-height: 1.25;
+}
+
+.movieYear {
+    /* margin-left: 0.5rem; */
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+    opacity: 0.65;
+}
+
+.movieDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.rating {
+    color: #00E156;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.watchedDate {
+    font-size: 1.5rem;
+    opacity: .45;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+}
+
+.hasSpoiler {
+    font-size: 1.5rem;
+    opacity: 0.65;
+    font-style: italic;
+    margin-top: 1.25rem;
+    font-weight: 300;
+}
+
+#moviePoster {
+    width: 150px;
+    height: 225px;
+    border-radius: 10px;
+    object-fit: contain;
+    border: 3px solid grey;
+}
+
+
+
+.sec-row,
+.third-row {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    opacity: 0.8;
+    font-weight: 300;
+    letter-spacing: 1.2px;
+}
+
+.sec-row {
+    opacity: 1;
+}
+
+.like {
+    letter-spacing: 3px;
+}
+
+.likes-count {
+    margin-left: 1.2rem;
+    opacity: 0.65;
+}
+
+img#review-card {
+    width: 50%;
+}
+
+form {
+    margin-top: 1.5rem;
+}
+
+button[type="submit"] {
+    margin-top: 15px;
+    display: block;
+    color: white;
+    background-color: var(--orange);
+    border: none;
+    padding: 8px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+    background-color: #CC6600;
+}
+
+@media screen and (min-width: 1024px) {
+    img#carrrdd-logo {
+        width: 8vw;
+    }
+}

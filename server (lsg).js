@@ -19,7 +19,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-let renderedHTMLOutside;
 app.post("/result", async (req, res) => {
   const reveiwLink = req.body.review_link;
 
@@ -98,34 +97,6 @@ app.post("/result", async (req, res) => {
     replacedUrl = reviewerPicSrc.replace(/-0-(\d+)-0-(\d+)-/, newDimensions);
     let reviewerPicBetterSrc = replacedUrl;
 
-    const renderedHTML = await new Promise((resolve, reject) => {
-      res.render(
-        "result1",
-        {
-          data: {
-            movieName,
-            reviewerName,
-            review,
-            movieYear,
-            rating,
-            watchedDate,
-            likes,
-            hasSpoiler,
-            posterBetterSrc,
-            reviewerPicBetterSrc,
-          },
-        },
-        (err, html) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(html);
-          }
-        }
-      );
-    });
-    renderedHTMLOutside = renderedHTML;
-
     // Create a new page and set its content to the rendered HTML
     const screenshotPage = await browser.newPage();
     await screenshotPage.setContent(renderedHTML);
@@ -136,7 +107,6 @@ app.post("/result", async (req, res) => {
 
     res.render("result", {
       data: {
-        renderedHTML,
         movieName,
         reviewerName,
         review,
@@ -166,47 +136,5 @@ app.get("/download", (req, res) => {
   // Send the file
   res.sendFile(imagePath);
 });
-
-// app.post("/download", async (req, res) => {
-//   //const renderedHTML = req.body.renderedHTML; // Assuming you send it in the request body
-
-//   let renderedHTML = renderedHTMLOutside;
-//   try {
-//     const browser = await puppeteer.launch({
-//       args: [
-//         "--disable-setuid-sandbox",
-//         "--no-sandbox",
-//         "--single-process",
-//         "--no-zygote",
-//       ],
-//       executablePath:
-//         process.env.NODE_ENV === "production"
-//           ? process.env.PUPPETEER_EXECUTABLE_PATH
-//           : puppeteer.executablePath(),
-//       headless: false,
-//     });
-
-//     const page = await browser.newPage();
-//     await page.setContent(renderedHTML);
-
-//     // Capture the screenshot of the desired element
-//     const element = await page.$("#htmlContent");
-//     const screenshotBuffer = await element.screenshot();
-
-//     await browser.close();
-
-//     // Set the appropriate headers for image download
-//     res.setHeader("Content-Disposition", "attachment; filename=card.png");
-//     res.setHeader("Content-Type", "image/png");
-
-//     // Send the screenshot buffer as a response
-//     res.send(screenshotBuffer);
-//   } catch (err) {
-//     console.error(err);
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while generating the screenshot" });
-//   }
-// });
 
 app.listen(4000);
